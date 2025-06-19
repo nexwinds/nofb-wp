@@ -1,0 +1,543 @@
+/**
+ * Bunny Media Offload Admin CSS
+ */
+
+/* General Styles */
+.nofb-dashboard,
+.nofb-settings,
+.nofb-media-manager,
+.nofb-documentation {
+    margin: 20px 0;
+}
+
+.nofb-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    grid-gap: 20px;
+    margin-top: 20px;
+}
+
+.nofb-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.nofb-card-header {
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    padding: 15px;
+}
+
+.nofb-card-header h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.nofb-card-body {
+    padding: 15px;
+}
+
+/* API Instructions Styles */
+.nofb-api-instruction {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-left: 4px solid #0073aa;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.nofb-api-instruction h3 {
+    margin-top: 0;
+    color: #0073aa;
+}
+
+.nofb-api-instruction pre {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.nofb-api-instruction code {
+    display: block;
+    white-space: pre;
+}
+
+/* API Settings specific styles */
+.form-table th[scope="row"] {
+    width: 200px;
+}
+
+.nofb-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.nofb-dashboard-title h2 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Stats Bar */
+.nofb-stats-bar {
+    display: flex;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.nofb-stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-right: 1px solid #eee;
+}
+
+.nofb-stat-item:last-child {
+    border-right: none;
+}
+
+.nofb-stat-number {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #0073aa;
+    margin-bottom: 5px;
+}
+
+.nofb-stat-label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Eligibility Criteria Section */
+.nofb-eligibility-criteria {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.nofb-eligibility-criteria h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.nofb-criteria-table {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+}
+
+.nofb-criteria-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    grid-gap: 10px;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-left: 3px solid #ccc;
+    border-radius: 3px;
+}
+
+.nofb-criteria-total {
+    border-left: 3px solid #0073aa;
+    background-color: #f0f7fa;
+    font-weight: bold;
+}
+
+.nofb-criteria-name {
+    font-weight: bold;
+    color: #333;
+}
+
+.nofb-criteria-count {
+    text-align: center;
+    color: #0073aa;
+    font-weight: bold;
+}
+
+.nofb-criteria-description {
+    font-size: 12px;
+    color: #666;
+}
+
+.nofb-criteria-note {
+    grid-column: 1 / -1;
+    font-size: 12px;
+    color: #e67e22;
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px dashed #eee;
+}
+
+/* Progress Bar */
+.nofb-progress-container {
+    margin: 15px 0;
+}
+
+.nofb-progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #f1f1f1;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.nofb-progress {
+    height: 100%;
+    background: #0073aa;
+    transition: width 0.3s ease;
+}
+
+.nofb-progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Action Buttons */
+.nofb-actions {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+/* Log Container */
+.nofb-log-container {
+    margin: 15px 0;
+}
+
+.nofb-log {
+    height: 150px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #444;
+}
+
+/* Notices */
+.nofb-notice {
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nofb-notice p {
+    margin: 0;
+}
+
+.nofb-success {
+    background: #f0fff0;
+    border: 1px solid #7ad03a;
+    color: #2e7d32;
+}
+
+.nofb-warning {
+    background: #fff8e5;
+    border: 1px solid #ffb900;
+    color: #996100;
+}
+
+.nofb-error {
+    background: #fef1f1;
+    border: 1px solid #dc3232;
+    color: #b71c1c;
+}
+
+/* Settings Toggle */
+.nofb-settings-toggle {
+    margin: 15px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+/* Documentation Styles */
+.nofb-documentation-container {
+    display: flex;
+    margin-top: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.nofb-sidebar {
+    width: 220px;
+    border-right: 1px solid #eee;
+    padding: 15px;
+    background: #f9f9f9;
+}
+
+.nofb-sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nofb-sidebar li {
+    margin-bottom: 5px;
+}
+
+.nofb-sidebar a {
+    display: block;
+    padding: 8px 10px;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #444;
+}
+
+.nofb-sidebar a:hover {
+    background: #eee;
+}
+
+.nofb-sidebar a.active {
+    background: #0073aa;
+    color: #fff;
+}
+
+.nofb-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.nofb-content h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.nofb-content h3 {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.nofb-content pre {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+.nofb-content code {
+    font-family: monospace;
+}
+
+.nofb-cta {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+/* FAQ Styles */
+.nofb-faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.nofb-faq-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.nofb-faq-item h3 {
+    cursor: pointer;
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.nofb-faq-content {
+    margin-left: 20px;
+}
+
+/* Quickstart Steps */
+.nofb-quickstart-steps {
+    margin: 20px 0;
+}
+
+.nofb-quickstart-step {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.nofb-quickstart-step:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.nofb-step-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    background: #f1f1f1;
+    border-radius: 50%;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.nofb-quickstart-step.completed .nofb-step-number {
+    background: #7ad03a;
+    color: #fff;
+}
+
+.nofb-step-content {
+    flex: 1;
+}
+
+.nofb-step-content h4 {
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+
+/* Media Queries */
+@media screen and (max-width: 782px) {
+    .nofb-card-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .nofb-stats-bar {
+        flex-direction: column;
+    }
+    
+    .nofb-stat-item {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .nofb-stat-item:last-child {
+        border-bottom: none;
+    }
+    
+    .nofb-documentation-container {
+        flex-direction: column;
+    }
+    
+    .nofb-sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .nofb-criteria-item {
+        grid-template-columns: 1fr;
+    }
+    
+    .nofb-criteria-count, .nofb-criteria-description {
+        text-align: left;
+        margin-left: 10px;
+    }
+}
+
+/* API Test Results */
+.nofb-api-result-item {
+    margin-bottom: 15px;
+}
+
+.nofb-api-result-item h4 {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.nofb-api-tester {
+    margin: 20px 0;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.nofb-test-result {
+    margin-top: 15px;
+}
+
+/* Support Box Styles */
+.nofb-support-card {
+    border-left: 4px solid #2271b1;
+}
+
+.nofb-support-info {
+    padding: 5px 0;
+}
+
+.nofb-support-info p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.nofb-support-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+}
+
+.nofb-support-link-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.nofb-support-link-item .dashicons {
+    margin-right: 8px;
+    color: #2271b1;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+.nofb-support-link-item a {
+    color: #2271b1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nofb-support-link-item a:hover {
+    color: #135e96;
+    text-decoration: underline;
+}
+
+/* Responsive styles for support box */
+@media screen and (max-width: 600px) {
+    .nofb-support-links {
+        grid-template-columns: 1fr;
+    }
+} 

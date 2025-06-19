@@ -1,0 +1,53 @@
+/**
+ * Bunny Media Offload - Media Library styles
+ */
+
+/* Status column styling */
+.column-nofb_status {
+    width: 140px;
+}
+
+/* Status badges */
+.nofb-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Status colors */
+.nofb-status.nofb-not-applicable {
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+.nofb-status.nofb-not-found {
+    background-color: #ffbaba;
+    color: #d8000c;
+}
+
+.nofb-status.nofb-eligible-optimize {
+    background-color: #feefb3;
+    color: #9f6000;
+}
+
+.nofb-status.nofb-not-eligible {
+    background-color: #f1f1f1;
+    color: #666;
+}
+
+.nofb-status.nofb-optimized {
+    background-color: #dff2bf;
+    color: #4f8a10;
+}
+
+.nofb-status.nofb-migrated {
+    background-color: #bde5f8;
+    color: #00529b;
+}
+
+.nofb-status.nofb-pending {
+    background-color: #feefb3;
+    color: #9f6000;
+} 
