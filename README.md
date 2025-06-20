@@ -25,7 +25,6 @@ Nexoffload Media for Bunny (NOFB) is a WordPress plugin that offers a two-phase 
 - Media Library integration with status indicators
 - URL rewriting for migrated files
 - Versioning for cache busting
-- Bidirectional file sync options
 - Detailed statistics and progress tracking
 - Transparent eligibility criteria with detailed counts for each requirement
 

@@ -217,9 +217,7 @@ class NOFB_Admin {
         $stats = array(
             'total_files' => 0,
             'optimized_files' => 0,
-            'migrated_files' => 0,
-            'total_size' => 0,
-            'saved_size' => 0
+            'migrated_files' => 0
         );
         
         // Cache keys for individual queries to improve performance
@@ -256,11 +254,6 @@ class NOFB_Admin {
             );
             wp_cache_set($migrated_cache_key, $stats['migrated_files'], 'nofb_admin', 5 * MINUTE_IN_SECONDS);
         }
-        
-        // Total size of media library files and saved size would need custom calculation
-        // This could be calculated by summing up file sizes from post meta, but leaving as placeholder for now
-        $stats['total_size'] = 0; 
-        $stats['saved_size'] = 0; 
         
         // Cache the statistics for 5 minutes
         wp_cache_set($cache_key, $stats, 'nofb_admin', 5 * MINUTE_IN_SECONDS);
@@ -363,36 +356,74 @@ class NOFB_Admin {
             </div>
             <div class="nofb-card-body">
                 <div class="nofb-support-info">
-                    <p>
+                    <p class="nofb-support-description">
                         <?php esc_html_e('This plugin and all media migration features are 100% free, maintained by us as a thank-you for creating your Bunny.net account through our affiliate link.', 'nexoffload-for-bunny'); ?>
                     </p>
-                    
-                    <div class="nofb-support-links">
-                        <div class="nofb-support-link-item">
-                            <span class="dashicons dashicons-admin-site"></span>
-                            <a href="https://bunny.net?ref=99jl5w7iou" target="_blank" rel="noopener noreferrer">
+                </div>
+                
+                <div class="nofb-quickstart-steps">
+                    <div class="nofb-quickstart-step">
+                        <span class="nofb-step-icon dashicons dashicons-cloud"></span>
+                        <div class="nofb-step-content">
+                            <h4><?php esc_html_e('Create a Bunny.net Account', 'nexoffload-for-bunny'); ?></h4>
+                            <p><?php esc_html_e('Get started with Bunny.net to access their high-performance CDN and storage services.', 'nexoffload-for-bunny'); ?></p>
+                            <a href="https://bunny.net?ref=99jl5w7iou" target="_blank" rel="noopener noreferrer" class="button">
                                 <?php esc_html_e('Create a Bunny.net Account', 'nexoffload-for-bunny'); ?>
                             </a>
                         </div>
-                        
-                        <div class="nofb-support-link-item">
-                            <span class="dashicons dashicons-coffee"></span>
-                            <a href="https://coff.ee/diogocardoso" target="_blank" rel="noopener noreferrer">
+                    </div>
+                    
+                    <div class="nofb-quickstart-step">
+                        <span class="nofb-step-icon dashicons dashicons-admin-tools"></span>
+                        <div class="nofb-step-content">
+                            <h4><?php esc_html_e('Create a Optimize API Account', 'nexoffload-for-bunny'); ?></h4>
+                            <p><?php esc_html_e('Access our optimization API services for advanced media optimization.', 'nexoffload-for-bunny'); ?></p>
+                            <a href="https://nofb.nexwinds.com" target="_blank" rel="noopener noreferrer" class="button">
+                                <?php esc_html_e('Create a Optimize API Account', 'nexoffload-for-bunny'); ?>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nofb-quickstart-step">
+                        <span class="nofb-step-icon dashicons dashicons-heart"></span>
+                        <div class="nofb-step-content">
+                            <h4><?php esc_html_e('Support the Developer', 'nexoffload-for-bunny'); ?></h4>
+                            <p><?php esc_html_e('Help fund ongoing development and maintenance of this free plugin.', 'nexoffload-for-bunny'); ?></p>
+                            <a href="https://coff.ee/diogocardoso" target="_blank" rel="noopener noreferrer" class="button">
                                 <?php esc_html_e('Support the Developer', 'nexoffload-for-bunny'); ?>
                             </a>
                         </div>
-                        
-                        <div class="nofb-support-link-item">
-                            <span class="dashicons dashicons-star-filled"></span>
-                            <a href="https://wordpress.org/plugins/nexoffload-for-bunny/" target="_blank" rel="noopener noreferrer">
+                    </div>
+                    
+                    <div class="nofb-quickstart-step">
+                        <span class="nofb-step-icon dashicons dashicons-star-filled"></span>
+                        <div class="nofb-step-content">
+                            <h4><?php esc_html_e('Rate on WordPress.org', 'nexoffload-for-bunny'); ?></h4>
+                            <p><?php esc_html_e('Leave a review to help others discover this plugin and share your experience.', 'nexoffload-for-bunny'); ?></p>
+                            <a href="https://wordpress.org/plugins/nexoffload-for-bunny/" target="_blank" rel="noopener noreferrer" class="button">
                                 <?php esc_html_e('Rate on WordPress.org', 'nexoffload-for-bunny'); ?>
                             </a>
                         </div>
-                        
-                        <div class="nofb-support-link-item">
-                            <span class="dashicons dashicons-github"></span>
-                            <a href="https://github.com/nexwinds/nofb-wp" target="_blank" rel="noopener noreferrer">
+                    </div>
+                    
+                    <div class="nofb-quickstart-step">
+                        <span class="nofb-step-icon dashicons dashicons-github"></span>
+                        <div class="nofb-step-content">
+                            <h4><?php esc_html_e('GitHub Repository', 'nexoffload-for-bunny'); ?></h4>
+                            <p><?php esc_html_e('Access the plugin source code, report issues, or contribute to development.', 'nexoffload-for-bunny'); ?></p>
+                            <a href="https://github.com/nexwinds/nofb-wp" target="_blank" rel="noopener noreferrer" class="button">
                                 <?php esc_html_e('GitHub Repository', 'nexoffload-for-bunny'); ?>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="nofb-quickstart-step">
+                        <span class="nofb-step-icon dashicons dashicons-book"></span>
+                        <div class="nofb-step-content">
+                            <h4><?php esc_html_e('Documentation', 'nexoffload-for-bunny'); ?></h4>
+                            <p><?php esc_html_e('Learn about our API and optimization features in the documentation.', 'nexoffload-for-bunny'); ?></p>
+                            <a href="https://nofb.nexwinds.com/docs" target="_blank" rel="noopener noreferrer" class="button">
+                                <?php esc_html_e('Documentation Website', 'nexoffload-for-bunny'); ?>
                             </a>
                         </div>
                     </div>

@@ -28,7 +28,7 @@ $stats = $this->get_statistics();
         </div>
     </div>
     
-    <div class="nofb-card-container">
+    <div class="nofb-card-container nofb-three-column-layout">
         <!-- Statistics Overview -->
         <div class="nofb-card nofb-stats-card">
             <div class="nofb-card-header">
@@ -47,22 +47,6 @@ $stats = $this->get_statistics();
                     <div class="nofb-stat-item">
                         <span class="nofb-stat-number"><?php echo esc_html(number_format($stats['migrated_files'])); ?></span>
                         <span class="nofb-stat-label"><?php esc_html_e('Migrated Files', 'nexoffload-for-bunny'); ?></span>
-                    </div>
-                    <div class="nofb-stat-item">
-                        <span class="nofb-stat-number"><?php echo esc_html(size_format($stats['total_size'], 2)); ?></span>
-                        <span class="nofb-stat-label"><?php esc_html_e('Total Size', 'nexoffload-for-bunny'); ?></span>
-                    </div>
-                    <div class="nofb-stat-item">
-                        <span class="nofb-stat-number"><?php echo esc_html(size_format($stats['saved_size'], 2)); ?></span>
-                        <span class="nofb-stat-label"><?php esc_html_e('Size Saved', 'nexoffload-for-bunny'); ?></span>
-                    </div>
-                    <div class="nofb-stat-item">
-                        <?php if ($stats['total_size'] > 0): ?>
-                            <span class="nofb-stat-number"><?php echo esc_html(round(($stats['saved_size'] / $stats['total_size']) * 100, 1)); ?>%</span>
-                        <?php else: ?>
-                            <span class="nofb-stat-number">0%</span>
-                        <?php endif; ?>
-                        <span class="nofb-stat-label"><?php esc_html_e('Space Saved', 'nexoffload-for-bunny'); ?></span>
                     </div>
                 </div>
             </div>
@@ -114,26 +98,15 @@ $stats = $this->get_statistics();
             </div>
         </div>
         
-        <!-- Getting Started -->
-        <div class="nofb-card nofb-quickstart-card">
+        <!-- Shortcuts (previously Quick Start) -->
+        <div class="nofb-card nofb-shortcuts-card">
             <div class="nofb-card-header">
-                <h3><?php esc_html_e('Quick Start', 'nexoffload-for-bunny'); ?></h3>
+                <h3><?php esc_html_e('Shortcuts', 'nexoffload-for-bunny'); ?></h3>
             </div>
             <div class="nofb-card-body">
                 <div class="nofb-quickstart-steps">
-                    <div class="nofb-quickstart-step<?php echo !empty($api_key) && !empty($storage_zone) ? ' completed' : ''; ?>">
-                        <span class="nofb-step-number">1</span>
-                        <div class="nofb-step-content">
-                            <h4><?php esc_html_e('Configure API Settings', 'nexoffload-for-bunny'); ?></h4>
-                            <p><?php esc_html_e('Enter your Bunny.net API key and Storage Zone details.', 'nexoffload-for-bunny'); ?></p>
-                            <a href="<?php echo esc_url(admin_url('admin.php?page=nexoffload-for-bunny-settings')); ?>" class="button">
-                                <?php esc_html_e('Configure', 'nexoffload-for-bunny'); ?>
-                            </a>
-                        </div>
-                    </div>
-                    
                     <div class="nofb-quickstart-step">
-                        <span class="nofb-step-number">2</span>
+                        <span class="nofb-step-icon dashicons dashicons-image-filter"></span>
                         <div class="nofb-step-content">
                             <h4><?php esc_html_e('Optimize Your Media', 'nexoffload-for-bunny'); ?></h4>
                             <p><?php esc_html_e('Start optimizing your existing media files.', 'nexoffload-for-bunny'); ?></p>
@@ -144,11 +117,11 @@ $stats = $this->get_statistics();
                     </div>
                     
                     <div class="nofb-quickstart-step">
-                        <span class="nofb-step-number">3</span>
+                        <span class="nofb-step-icon dashicons dashicons-cloud-upload"></span>
                         <div class="nofb-step-content">
                             <h4><?php esc_html_e('Migrate to Bunny.net CDN', 'nexoffload-for-bunny'); ?></h4>
                             <p><?php esc_html_e('Offload your optimized media files to Bunny.net CDN.', 'nexoffload-for-bunny'); ?></p>
-                            <a href="<?php echo esc_url(admin_url('admin.php?page=nexoffload-for-bunny-manager')); ?>" class="button">
+                            <a href="<?php echo esc_url(admin_url('admin.php?page=nexoffload-for-bunny-manager&tab=migration')); ?>" class="button">
                                 <?php esc_html_e('Migrate', 'nexoffload-for-bunny'); ?>
                             </a>
                         </div>
@@ -156,8 +129,10 @@ $stats = $this->get_statistics();
                 </div>
             </div>
         </div>
-        
-        <!-- Support Information Box -->
+    </div>
+    
+    <!-- Support Information Box with Two Inner Columns -->
+    <div class="nofb-wide-card-container">
         <?php $this->render_support_box(); ?>
     </div>
 </div> 

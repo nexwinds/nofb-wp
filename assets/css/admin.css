@@ -17,6 +17,18 @@
     margin-top: 20px;
 }
 
+/* Three column layout for main cards */
+.nofb-three-column-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+/* Wide container for support box */
+.nofb-wide-card-container {
+    margin-top: 20px;
+}
+
 .nofb-card {
     background: #fff;
     border: 1px solid #ddd;
@@ -124,6 +136,13 @@
     display: block;
     font-size: 14px;
     color: #666;
+}
+
+/* Support card with two columns */
+.nofb-support-card .nofb-card-body .nofb-quickstart-steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
 }
 
 /* Eligibility Criteria Section */
@@ -415,7 +434,21 @@
     margin-right: 15px;
 }
 
-.nofb-quickstart-step.completed .nofb-step-number {
+.nofb-step-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: #2271b1;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.nofb-quickstart-step.completed .nofb-step-number,
+.nofb-quickstart-step.completed .nofb-step-icon {
     background: #7ad03a;
     color: #fff;
 }
@@ -430,8 +463,19 @@
 }
 
 /* Media Queries */
+@media screen and (max-width: 1200px) {
+    .nofb-three-column-layout {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .nofb-support-card .nofb-card-body .nofb-quickstart-steps {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media screen and (max-width: 782px) {
-    .nofb-card-container {
+    .nofb-card-container,
+    .nofb-three-column-layout {
         grid-template-columns: 1fr;
     }
     
@@ -442,6 +486,7 @@
     .nofb-stat-item {
         border-right: none;
         border-bottom: 1px solid #eee;
+        padding: 15px 10px;
     }
     
     .nofb-stat-item:last-child {
@@ -454,8 +499,7 @@
     
     .nofb-sidebar {
         width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #eee;
+        margin-bottom: 20px;
     }
     
     .nofb-criteria-item {
@@ -463,8 +507,9 @@
     }
     
     .nofb-criteria-count, .nofb-criteria-description {
+        grid-column: 1;
         text-align: left;
-        margin-left: 10px;
+        margin-top: 5px;
     }
 }
 
