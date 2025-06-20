@@ -25,9 +25,9 @@ class NOFB_API {
      */
     private function get_api_base_url() {
         if ($this->api_region === 'eu' || $this->api_region === 'me') {
-            return 'https://api-eu.nofb.nexwinds.com';
+            return 'https://api-eu.nexoffload.nexwinds.com';
         }
-        return 'https://api-us.nofb.nexwinds.com';
+        return 'https://api-us.nexoffload.nexwinds.com';
     }
     
     /**
