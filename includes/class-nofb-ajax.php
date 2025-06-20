@@ -251,10 +251,28 @@ class NOFB_AJAX {
         }
         
         $thumbnail = wp_get_attachment_image($attachment_id, 'thumbnail');
-        $original_size = get_post_meta($attachment_id, '_nofb_file_size', true);
-        $original_size = $original_size ? round($original_size / 1024, 2) : 0;
-        $optimized_size = round(filesize($file_path) / 1024, 2);
-        $savings = $original_size > 0 ? round(100 - ($optimized_size / $original_size * 100), 1) : 0;
+        
+        // Get optimization data from post meta
+        $optimization_data = get_post_meta($attachment_id, '_nofb_optimization_data', true);
+        
+        // Use API-provided values when available
+        if (is_array($optimization_data) && !empty($optimization_data)) {
+            // API values are stored in KB, so multiply by 1 to keep them in KB
+            $original_size = isset($optimization_data['originalSize']) ? floatval($optimization_data['originalSize']) : 0;
+            $optimized_size = isset($optimization_data['compressedSize']) ? floatval($optimization_data['compressedSize']) : 0;
+            $savings = isset($optimization_data['compressionRatio']) ? floatval($optimization_data['compressionRatio']) : 0;
+        } else {
+            // Fallback to stored file size metadata
+            $original_size = get_post_meta($attachment_id, '_nofb_original_size', true);
+            $optimized_size = get_post_meta($attachment_id, '_nofb_file_size', true);
+            
+            // Convert bytes to KB
+            $original_size = $original_size ? round($original_size / 1024, 2) : 0;
+            $optimized_size = $optimized_size ? round($optimized_size / 1024, 2) : 0;
+            
+            // Calculate savings percentage
+            $savings = $original_size > 0 ? round(100 - ($optimized_size / $original_size * 100), 1) : 0;
+        }
         
         return sprintf(
             '<tr><td>%s</td><td>%s</td><td>%s KB</td><td>%s KB</td><td>%s%%</td><td>%s</td></tr>',

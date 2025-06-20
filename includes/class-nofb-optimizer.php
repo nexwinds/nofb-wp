@@ -289,7 +289,7 @@ class NOFB_Optimizer {
     }
     
     /**
-     * Handle API response with improved error detection
+     * Handle API response
      */
     private function handle_api_response($response) {
         if (is_wp_error($response)) {
@@ -359,11 +359,33 @@ class NOFB_Optimizer {
                 
                 // Handle single result (non-batch response)
                 if (isset($json_data['batch']) && $json_data['batch'] === false && isset($json_data['results'])) {
-                    // Convert single result object to an array with one item
-                    if (is_array($json_data['results']) && !isset($json_data['results'][0])) {
-                        $this->log('Converting single result object to array', 'info');
-                        return array($json_data['results']);
+                    // Log API usage for monitoring
+                    if (isset($json_data['creditsUsed'])) {
+                        $this->log('API credits used: ' . $json_data['creditsUsed'] . ', Images processed: ' . 
+                            (isset($json_data['processed']) ? $json_data['processed'] : 'N/A'));
                     }
+                    
+                    // UPDATED: Ensure results structure matches what we expect
+                    // For single image result (non-batch) - convert to array with one item
+                    if (!isset($json_data['results'][0])) {
+                        // If results is a single object, make it an array with one item
+                        return array($json_data['results']);
+                    } else {
+                        // If results is already an array, return as is
+                        return $json_data['results'];
+                    }
+                }
+                
+                // Batch response (multiple images)
+                if (isset($json_data['batch']) && $json_data['batch'] === true && isset($json_data['results'])) {
+                    // Log API usage for monitoring
+                    if (isset($json_data['creditsUsed'])) {
+                        $this->log('API credits used: ' . $json_data['creditsUsed'] . ', Images processed: ' . 
+                            (isset($json_data['processed']) ? $json_data['processed'] : 'N/A'));
+                    }
+                    
+                    // Return results array
+                    return $json_data['results'];
                 }
                 
                 // Validate response structure - handle both array and object formats
@@ -371,7 +393,7 @@ class NOFB_Optimizer {
                     // Log API usage for monitoring
                     if (isset($json_data['creditsUsed'])) {
                         $this->log('API credits used: ' . $json_data['creditsUsed'] . ', Images processed: ' . 
-                            (isset($json_data['imagesProcessed']) ? $json_data['imagesProcessed'] : 'N/A'));
+                            (isset($json_data['processed']) ? $json_data['processed'] : 'N/A'));
                     }
                     
                     // Handle case where results is a single object instead of an array
@@ -918,16 +940,26 @@ class NOFB_Optimizer {
      * @return bool Success status
      */
     private function handle_optimization_result($file_path, $result) {
-        // Handle successful optimization
-        if (isset($result['success']) && $result['success'] === true && isset($result['data']['base64'])) {
-            return $this->save_optimized_image($file_path, $result);
+        // Check if we have a valid result
+        if (!is_array($result)) {
+            $this->log('Invalid result format for ' . basename($file_path), 'error');
+            return false;
         }
         
-        // Handle skipped files
-        if (isset($result['skipped']) && $result['skipped'] === true) {
-            $this->mark_as_optimized($file_path, $result);
-            $this->log('Skipped optimization for ' . basename($file_path) . ' (marked as optimized)');
-            return true;
+        // Handle successful optimization
+        if (isset($result['success']) && $result['success'] === true) {
+            // Important: Check skipped flag - according to the API format, skipped must be false for optimized images
+            if (isset($result['skipped']) && $result['skipped'] === false && isset($result['data']['base64'])) {
+                return $this->save_optimized_image($file_path, $result);
+            } elseif (isset($result['skipped']) && $result['skipped'] === true) {
+                // Mark skipped files as optimized but log the skip
+                $this->mark_as_optimized($file_path, $result);
+                $this->log('Skipped optimization for ' . basename($file_path) . ' (marked as optimized)');
+                return true;
+            } else {
+                $this->log('Missing data in successful result for ' . basename($file_path), 'error');
+                return false;
+            }
         }
         
         // Handle failed optimization
@@ -1490,7 +1522,22 @@ class NOFB_Optimizer {
         // Update attachment metadata
         update_post_meta($attachment_id, '_nofb_optimized', true);
         update_post_meta($attachment_id, '_nofb_optimization_date', current_time('mysql'));
-        update_post_meta($attachment_id, '_nofb_file_size', $file_size);
+        
+        // UPDATED: Use API response values for file sizes when available
+        if (isset($result['data'])) {
+            // Get original size from API response or fallback to local file size
+            $original_size = isset($result['data']['originalSize']) ? $result['data']['originalSize'] * 1024 : $file_size;
+            $compressed_size = isset($result['data']['compressedSize']) ? $result['data']['compressedSize'] * 1024 : $file_size;
+            
+            // Use appropriate values for storage
+            update_post_meta($attachment_id, '_nofb_original_size', $original_size);
+            update_post_meta($attachment_id, '_nofb_file_size', $compressed_size);
+        } else {
+            // Fallback if no data in result
+            update_post_meta($attachment_id, '_nofb_original_size', $file_size);
+            update_post_meta($attachment_id, '_nofb_file_size', $file_size);
+        }
+        
         update_post_meta($attachment_id, '_nofb_local_path', $file_path);
         
         // Update optimization metadata
