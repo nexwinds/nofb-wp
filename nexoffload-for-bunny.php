@@ -3,7 +3,7 @@
  * Plugin Name: Nexoffload for Bunny
  * Plugin Full Name: Nexoffload Media for Bunny – Optimize & Deliver
  * Plugin Slug: nexoffload-for-bunny
- * Plugin URI: https://nofb.nexwinds.com
+ * Plugin URI: https://nexoffload.nexwinds.com
  * Description: Seamlessly optimize and offload WordPress media to Bunny.net Edge Storage for blazing-fast delivery and lighter server load.
  * Version: 1.0.0
  * Author: Nexwinds

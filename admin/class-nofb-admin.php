@@ -378,7 +378,7 @@ class NOFB_Admin {
                         <div class="nofb-step-content">
                             <h4><?php esc_html_e('Create a Optimize API Account', 'nexoffload-for-bunny'); ?></h4>
                             <p><?php esc_html_e('Access our optimization API services for advanced media optimization.', 'nexoffload-for-bunny'); ?></p>
-                            <a href="https://nofb.nexwinds.com" target="_blank" rel="noopener noreferrer" class="button">
+                            <a href="https://nexoffload.nexwinds.com" target="_blank" rel="noopener noreferrer" class="button">
                                 <?php esc_html_e('Create a Optimize API Account', 'nexoffload-for-bunny'); ?>
                             </a>
                         </div>
@@ -422,7 +422,7 @@ class NOFB_Admin {
                         <div class="nofb-step-content">
                             <h4><?php esc_html_e('Documentation', 'nexoffload-for-bunny'); ?></h4>
                             <p><?php esc_html_e('Learn about our API and optimization features in the documentation.', 'nexoffload-for-bunny'); ?></p>
-                            <a href="https://nofb.nexwinds.com/docs" target="_blank" rel="noopener noreferrer" class="button">
+                            <a href="https://nexoffload.nexwinds.com/docs" target="_blank" rel="noopener noreferrer" class="button">
                                 <?php esc_html_e('Documentation Website', 'nexoffload-for-bunny'); ?>
                             </a>
                         </div>
